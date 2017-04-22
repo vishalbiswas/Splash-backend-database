@@ -7,11 +7,9 @@ CREATE TABLE users (
   email varchar(100) NOT NULL unique,
   regtime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   modtime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  verified tinyint NOT NULL DEFAULT 0,
   fname varchar(50) DEFAULT NULL,
   lname varchar(50) DEFAULT NULL,
-  profpic binary default null,
-  picsize bigint DEFAULT 0
+  profpic bigint foreign key references attachments(attachid) default null
 );
 
 insert into users (username, password, email, fname, lname) values ('vishalbiswas', 'testing', 'vshlbiswas@ymail.com', 'Vishal', 'Biswas');
