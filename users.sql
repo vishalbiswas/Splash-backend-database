@@ -16,4 +16,4 @@ insert into users (username, password, email, fname, lname) values ('vishalbiswa
 
 select * from users;
 
-drop table users;
+--drop table users;

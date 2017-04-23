@@ -8,4 +8,4 @@ create table attachments (
 
 select * from attachments;
 
-drop table attachments;
+--drop table attachments;

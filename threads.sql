@@ -15,4 +15,4 @@ INSERT INTO threads (title, content, creator_id, topicid, attachid) OUTPUT INSER
 
 select * from threads;
 
-drop table threads;
+--drop table threads;
