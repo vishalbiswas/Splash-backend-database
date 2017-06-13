@@ -8,7 +8,10 @@ create table threads (
   ctime datetime default CURRENT_TIMESTAMP not null,
   mtime datetime default CURRENT_TIMESTAMP not null,
   topicid int foreign key references topics(topicid) not null,
-  attachid bigint foreign key references attachments(attachid) default null
+  attachid bigint foreign key references attachments(attachid) default null,
+  locked bit default 0,
+  hidden bit default 0,
+  reported int default 0
 );
 
 INSERT INTO threads (title, content, creator_id, topicid, attachid) OUTPUT INSERTED.threadid, INSERTED.ctime, INSERTED.mtime VALUES ('hello', 'splash', 1, 1, null);

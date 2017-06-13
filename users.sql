@@ -9,7 +9,12 @@ CREATE TABLE users (
   modtime datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   fname varchar(50) DEFAULT NULL,
   lname varchar(50) DEFAULT NULL,
-  profpic bigint foreign key references attachments(attachid) default null
+  profpic bigint foreign key references attachments(attachid) default null,
+  canpost bit default 1,
+  cancomment bit default 1,
+  ismod int default 0,
+  banned bit default 0,
+  reported int default 0
 );
 
 insert into users (username, password, email, fname, lname) values ('vishalbiswas', 'testing', 'vshlbiswas@ymail.com', 'Vishal', 'Biswas');
