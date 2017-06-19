@@ -7,6 +7,7 @@ create table notifications (
 	commentid bigint foreign key references comments(commentid) default null,
 	threadid bigint foreign key references threads(threadid) default null,
 	actionuid bigint foreign key references users(uid) default null,
+	ctime datetime default CURRENT_TIMESTAMP,
 	constraint uid_actionuid check(actionuid != uid)
 );
 

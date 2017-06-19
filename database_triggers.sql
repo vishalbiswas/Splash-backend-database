@@ -36,8 +36,10 @@ create trigger comment_inserted on comments after insert as
 	end
 go
 
---drop trigger user_created;
---drop trigger comment_inserted;
+/*
+drop trigger user_created;
+drop trigger comment_inserted;
+*/
 
 
 -------------------   REPORTED   -----------------------
@@ -86,18 +88,18 @@ if (@locked = 1)
 begin
 	insert into notifications (uid, code, commentid, threadid) values (@uid, (select code from notification_constants where codename = 'COMMENT_LOCKED'), @commentid, @threadid);
 end
-else
+else if (@locked = 0)
 begin
-	insert into notifications (uid, code, commentid) values (@uid, (select code from notification_constants where codename = 'COMMENT_UNLOCKED'), @commentid, @threadid);
+	insert into notifications (uid, code, commentid, threadid) values (@uid, (select code from notification_constants where codename = 'COMMENT_UNLOCKED'), @commentid, @threadid);
 end
 
 if (@hidden = 1)
 begin
 	insert into notifications (uid, code, custom) values (@uid, (select code from notification_constants where codename = 'COMMENT_HIDDEN'), (select content from comments where commentid = @commentid));
 end
-else
+else if (@hidden = 0)
 begin
-	insert into notifications (uid, code, commentid) values (@uid, (select code from notification_constants where codename = 'COMMENT_UNHIDDEN'), @commentid);
+	insert into notifications (uid, code, commentid, threadid) values (@uid, (select code from notification_constants where codename = 'COMMENT_UNHIDDEN'), @commentid, @threadid);
 end
 go
 
@@ -116,7 +118,7 @@ if (@locked = 1)
 begin
 	insert into notifications (uid, code, threadid) values (@uid, (select code from notification_constants where codename = 'THREAD_LOCKED'), @threadid);
 end
-else
+else if (@locked = 0)
 begin
 	insert into notifications (uid, code, threadid) values (@uid, (select code from notification_constants where codename = 'THREAD_UNLOCKED'), @threadid);
 end
@@ -125,7 +127,7 @@ if (@hidden = 1)
 begin
 	insert into notifications (uid, code, custom) values (@uid, (select code from notification_constants where codename = 'THREAD_HIDDEN'), (select content from threads where @threadid = @threadid));
 end
-else
+else if (@hidden = 0)
 begin
 	insert into notifications (uid, code, threadid) values (@uid, (select code from notification_constants where codename = 'THREAD_UNHIDDEN'), @threadid);
 end
@@ -146,7 +148,7 @@ if (@cancomment = 0 OR @canpost = 0)
 begin
 	insert into notifications (uid, code) values (@uid, (select code from notification_constants where codename = 'REVOKED'));
 end
-else
+else if (@cancomment = 1 OR @canpost = 1)
 begin
 	insert into notifications (uid, code) values (@uid, (select code from notification_constants where codename = 'REVIVED'));
 end

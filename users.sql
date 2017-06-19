@@ -15,7 +15,7 @@
   reported int default 0
 );
 
-insert into users (username, password, email, fname, lname) values ('vishalbiswas', 'testing', 'vshlbiswas@ymail.com', 'Vishal', 'Biswas');
+insert into users (username, password, email, fname, lname, ismod) values ('vishalbiswas', 'testing', 'vshlbiswas@ymail.com', 'Vishal', 'Biswas', 2);
 
 select * from users;
 
