@@ -1,5 +1,3 @@
-use splash;
-
 create table topics (
     topicid int primary key identity NOT NULL,
     [name] varchar(150) NULL,
@@ -7,6 +5,7 @@ create table topics (
     hidden bit default 0
 );
 
+insert into topics ([name]) values ('Forum Basics');
 insert into topics ([name]) values ('Android Development');
 insert into topics ([name]) values ('Web Development');
 

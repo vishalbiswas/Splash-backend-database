@@ -1,6 +1,4 @@
-﻿use splash;
-
-create table threads (
+﻿create table threads (
   threadid bigint identity primary key,
   title varchar(100) not null,
   content text not null,
@@ -14,7 +12,9 @@ create table threads (
   reported int default 0
 );
 
-INSERT INTO threads (title, content, creator_id, topicid, attachid) OUTPUT INSERTED.threadid, INSERTED.ctime, INSERTED.mtime VALUES ('hello', 'splash', 1, 1, null);
+INSERT INTO threads (title, content, creator_id, topicid, locked)
+OUTPUT INSERTED.threadid, INSERTED.ctime, INSERTED.mtime
+VALUES ('Rules for Posting', '1. No explicit content' + char(13) + '2. No provocative behaviour' + char(13) + '3. Technology related content only', 1, 1, 1);
 
 select * from threads;
 

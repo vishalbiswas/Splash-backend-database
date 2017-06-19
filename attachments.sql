@@ -1,6 +1,4 @@
-﻿use splash;
-
-create table attachments (
+﻿create table attachments (
   attachid bigint identity primary key,
   filename varchar(256) default null,
   data varbinary(max) default null,

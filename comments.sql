@@ -1,5 +1,3 @@
-use splash;
-
 create table comments (
   commentid bigint identity primary key,
   threadid bigint foreign key references threads(threadid) not null,

@@ -1,6 +1,4 @@
-﻿use splash;
-
-CREATE TABLE users (
+﻿CREATE TABLE users (
   uid bigint identity NOT NULL primary key,
   username varchar(50) NOT NULL unique,
   password varchar(50) NOT NULL,

@@ -1,5 +1,3 @@
-use splash;
-
 create table reports_threads (
 	reportid bigint primary key identity,
 	threadid bigint foreign key references threads(threadid) not null,
@@ -7,8 +5,7 @@ create table reports_threads (
 	modid bigint foreign key references users(uid),
 	action int default 0, -- 0 -> Report, 1 -> Release, 2 -> Lock, 3 -> Hide
 	ctime datetime default CURRENT_TIMESTAMP,
-	constraint user_or_mod_threads check (userid != null or modid != null),
-	constraint unique_thread_key unique (threadid, userid)
+	constraint user_or_mod_threads check (userid != null or modid != null)
 );
 
 create table reports_comments (
@@ -18,8 +15,7 @@ create table reports_comments (
 	modid bigint foreign key references users(uid),
 	action int default 0, -- 0 -> Report, 1 -> Release, 2 -> Lock, 3 -> Hide
 	ctime datetime default CURRENT_TIMESTAMP,
-	constraint user_or_mod_comments check (userid != null or modid != null),
-	constraint unique_comment_key unique (commentid, userid)
+	constraint user_or_mod_comments check (userid != null or modid != null)
 );
 
 create table reports_users (
@@ -29,8 +25,7 @@ create table reports_users (
 	modid bigint foreign key references users(uid),
 	action int default 0, -- 0 -> Report, 1 -> Release, 2 -> Lock, 3 -> Hide
 	ctime datetime default CURRENT_TIMESTAMP,
-	constraint user_or_mod_users check (userid != null or modid != null),
-	constraint unique_user_key unique (uid, userid)
+	constraint user_or_mod_users check (userid != null or modid != null)
 );
 
 select * from reports_threads;
